@@ -1,5 +1,6 @@
-import { capitalize, reverseString, calculator } from './function.js';
+import { capitalize, reverseString, calculator, caesarCipher } from './function.js';
 
+// TDD for capitalize()
 describe('Retrieve string with first character capitalized', () => {
   test('String1 with first character lowercase', () => {
     expect(capitalize("supermarket")).toBe("Supermarket");
@@ -22,6 +23,7 @@ describe('Retrieve string with first character capitalized', () => {
   });
 });
 
+// TDD for reverseString()
 describe('Retrieve string with reversed character order', () => {
   test('String1 with length greater than 1', () => {
     expect(reverseString("chihuahua")).toBe("auhauhihc");
@@ -40,6 +42,7 @@ describe('Retrieve string with reversed character order', () => {
   });
 });
 
+// TDD for calculator()
 describe('Retrieve object with correct calculation', () => {
   test('Number set1 with two positive nonzero int', () => {
     expect(calculator(10, 5)).toEqual({
@@ -77,7 +80,7 @@ describe('Retrieve object with correct calculation', () => {
     });
   });
 
-  test('Number set1 with two negative nonzero int', () => {
+  test('Number set with two negative nonzero int', () => {
     expect(calculator(-10, -5)).toEqual({
       add: -15,
       subtract: -5,
@@ -102,5 +105,27 @@ describe('Retrieve object with correct calculation', () => {
       divide: NaN,
       multiply: 0
     });
+  });
+});
+
+// TDD for caesarCipher()
+describe('Retrieve string with each character shifted', () => {
+  test('String with all alphabetical character lowercase', () => {
+    expect(caesarCipher("xyz", 3)).toBe("abc");
+  });
+
+  
+  test('String with all alphabetical characters uppercase', () => {
+    expect(caesarCipher("EVA", 5)).toBe("JAF");
+  });
+  
+
+  test('String with alphabetical characters both lettercases', () => {
+    expect(caesarCipher("HeLLo", 3)).toBe("KhOOr");
+  });
+  
+
+  test('String with alphabetical and non-alphabetical characters', () => {
+    expect(caesarCipher("Hello, World!", 3)).toBe("Khoor, Zruog!");
   });
 });

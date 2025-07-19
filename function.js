@@ -1,9 +1,8 @@
 import Big from "big.js"
-export { capitalize, reverseString, calculator };
+export { capitalize, reverseString, calculator, caesarCipher };
 
 // take a string and returns it with the first character capitalized
 function capitalize(testString) {
-  
   let result = "";
 
   if(testString.length > 0) {
@@ -20,7 +19,6 @@ function capitalize(testString) {
 
 // take a string and returns it reversed
 function reverseString(testString) {
-
   let result = "";
 
   for(let i = testString.length - 1 ; i >= 0 ; i--) {
@@ -49,7 +47,7 @@ function calculator(num1, num2) {
   let product = +(bigNum1.times(bigNum2)).round(2);
   product = product === 0 ? 0 : product;
 
-  let result= {
+  let result = {
     add: sum,
     subtract: diff,
     divide: division,
@@ -57,4 +55,30 @@ function calculator(num1, num2) {
   }
 
   return result;
+}
+
+// take a string and a shift factor and returns it with each character “shifted”
+function caesarCipher(testString, factor){
+  let result = "";
+  
+  for(let i = 0 ; i <= testString.length - 1 ; i++){
+    result += shiftChar(testString.charCodeAt(i), factor);
+  }
+
+  return result;
+}
+
+// shift alphabetical characters
+function shiftChar(testCharCode, factor) {
+  // charactor is a to z
+  if(testCharCode >= 97 && testCharCode <= 122) {
+    testCharCode = (testCharCode - 97 + factor) % 26 + 97;
+  }
+
+  // charactor is A to Z
+  if(testCharCode >= 65 && testCharCode <= 90) {
+    testCharCode = (testCharCode - 65 + factor) % 26 + 65;
+  }
+
+  return String.fromCharCode(testCharCode);
 }
