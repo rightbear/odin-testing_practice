@@ -20,6 +20,7 @@
     "babel-preset-current-node-syntax": "^1.1.0",
     "babel-preset-jest": "^30.0.1",
     "balanced-match": "^1.0.2",
+    "big.js": "^7.0.1",
     "brace-expansion": "^2.0.2",
     "braces": "^3.0.3",
     "browserslist": "^4.25.1",

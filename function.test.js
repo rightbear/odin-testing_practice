@@ -1,4 +1,4 @@
-import { capitalize, reverseString } from './function.js';
+import { capitalize, reverseString, calculator } from './function.js';
 
 describe('Retrieve string with first character capitalized', () => {
   test('String1 with first character lowercase', () => {
@@ -37,5 +37,70 @@ describe('Retrieve string with reversed character order', () => {
 
   test('String with length equal to 0', () => {
     expect(reverseString("")).toBe("");
+  });
+});
+
+describe('Retrieve object with correct calculation', () => {
+  test('Number set1 with two positive nonzero int', () => {
+    expect(calculator(10, 5)).toEqual({
+      add: 15,
+      subtract: 5,
+      divide: 2,
+      multiply: 50
+    });
+  });
+
+  test('Number set2 with two positive nonzero int', () => {
+    expect(calculator(8, 3)).toEqual({
+      add: 11,
+      subtract: 5,
+      divide: 2.67,
+      multiply: 24
+    });
+  });
+
+  test('Number set with two positive nonzero float', () => {
+    expect(calculator(0.2, 0.1)).toEqual({
+      add: 0.3,
+      subtract: 0.1,
+      divide: 2,
+      multiply: 0.02
+    });
+  });
+
+  test('Number set with one nonzero float and one zero', () => {
+    expect(calculator(10.075, 0)).toEqual({
+      add: 10.08,
+      subtract: 10.08,
+      divide: NaN,
+      multiply: 0
+    });
+  });
+
+  test('Number set1 with two negative nonzero int', () => {
+    expect(calculator(-10, -5)).toEqual({
+      add: -15,
+      subtract: -5,
+      divide: 2,
+      multiply: 50
+    });
+  });
+
+  test('Number set with two negative nonzero float', () => {
+    expect(calculator(-0.2, -0.1)).toEqual({
+      add: -0.3,
+      subtract: -0.1,
+      divide: 2,
+      multiply: 0.02
+    });
+  });
+
+  test('Number set with one negative float and one zero', () => {
+    expect(calculator(-10.075, 0)).toEqual({
+      add: -10.08,
+      subtract: -10.08,
+      divide: NaN,
+      multiply: 0
+    });
   });
 });
