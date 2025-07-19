@@ -2,8 +2,12 @@
   "devDependencies": {
     "@babel/core": "^7.28.0",
     "@babel/preset-env": "^7.28.0",
+    "@eslint/js": "^9.31.0",
     "babel-jest": "^30.0.4",
-    "jest": "^30.0.4"
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.8",
+    "jest": "^30.0.4",
+    "prettier": "3.6.2"
   },
   "name": "odin-testing_practice",
   "version": "1.0.0",
