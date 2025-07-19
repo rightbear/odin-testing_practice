@@ -1,5 +1,5 @@
 import Big from "big.js"
-export { capitalize, reverseString, calculator, caesarCipher };
+export { capitalize, reverseString, calculator, caesarCipher, analyzeArray };
 
 // take a string and returns it with the first character capitalized
 function capitalize(testString) {
@@ -81,4 +81,47 @@ function shiftChar(testCharCode, factor) {
   }
 
   return String.fromCharCode(testCharCode);
+}
+
+// take an array of numbers and the object with functions and correct calculation
+function analyzeArray(testArray) {
+  Big.RM = Big.roundHalfEven;
+
+  let size = testArray.length;
+
+  let bigSum = NaN, bigMin = NaN, bigMax = NaN, bigAvg = NaN;
+
+  if(size > 0) {
+    bigSum = new Big(0), minNum = testArray[0], maxNum = testArray[0];
+
+    testArray.forEach(element => {
+      if(element < minNum) {
+        minNum = element
+      }
+
+      if(element > maxNum) {
+        maxNum = element
+      }
+
+      bigSum = bigSum.plus(element);
+    });
+    
+    bigAvg = +(bigSum.div(size)).round(2);
+    bigAvg = bigAvg === 0 ? 0 : bigAvg;  // prevent -0 is not equal to +0 in toBe and toEqual
+
+    bigMin = +(new Big(minNum)).round(2);
+    bigMin = bigMin === 0 ? 0 : bigMin;
+
+    bigMax = +(new Big(maxNum)).round(2);
+    bigMax = bigMax === 0 ? 0 : bigMax;
+  }
+
+  let result = {
+    average: bigAvg,
+    min: bigMin,
+    max: bigMax,
+    length: size
+  };
+
+  return result;
 }

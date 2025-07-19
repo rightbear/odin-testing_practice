@@ -1,4 +1,4 @@
-import { capitalize, reverseString, calculator, caesarCipher } from './function.js';
+import { capitalize, reverseString, calculator, caesarCipher, analyzeArray } from './function.js';
 
 // TDD for capitalize()
 describe('Retrieve string with first character capitalized', () => {
@@ -43,7 +43,7 @@ describe('Retrieve string with reversed character order', () => {
 });
 
 // TDD for calculator()
-describe('Retrieve object with correct calculation', () => {
+describe('Retrieve object with correct calculation of two numbers', () => {
   test('Number set1 with two positive nonzero int', () => {
     expect(calculator(10, 5)).toEqual({
       add: 15,
@@ -127,5 +127,73 @@ describe('Retrieve string with each character shifted', () => {
 
   test('String with alphabetical and non-alphabetical characters', () => {
     expect(caesarCipher("Hello, World!", 3)).toBe("Khoor, Zruog!");
+  });
+});
+
+// TDD for analyzeArray()
+describe('Retrieve object with correct calculation of array', () => {
+  test('Number set1 with more than 1 interger numbers', () => {
+    expect(analyzeArray([1,8,3,4,2,6])).toEqual({
+      average: 4,
+      min: 1,
+      max: 8,
+      length: 6
+    });
+  });
+
+  test('Number set2 with more than 1 interger numbers', () => {
+    expect(analyzeArray([7,2,15,11,31,23,8])).toEqual({
+      average: 13.86,
+      min: 2,
+      max: 31,
+      length: 7
+    });
+  });
+
+
+  
+  test('Number set with more than 1 float numbers', () => {
+    expect(analyzeArray([1.1,-0.8,3.5,9.4,-2.9])).toEqual({
+      average: 2.06,
+      min: -2.9,
+      max: 9.4,
+      length: 5
+    });
+  });
+  
+  test('Number set1 with only 1 interger number', () => {
+    expect(analyzeArray([8])).toEqual({
+      average: 8,
+      min: 8,
+      max: 8,
+      length: 1
+    });
+  });
+
+  test('Number set2 with only 1 interger number', () => {
+    expect(analyzeArray([-0])).toEqual({
+      average: 0,
+      min: 0,
+      max: 0,
+      length: 1
+    });
+  });
+
+  test('Number set with only 1 float number', () => {
+    expect(analyzeArray([-0.654562])).toEqual({
+      average: -0.65,
+      min: -0.65,
+      max: -0.65,
+      length: 1
+    });
+  });
+
+  test('Number set with no number', () => {
+    expect(analyzeArray([])).toEqual({
+      average: NaN,
+      min: NaN,
+      max: NaN,
+      length: 0
+    });
   });
 });
